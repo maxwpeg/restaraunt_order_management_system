@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Anonymous Pro';
+    src: url('fonts/AnonymousPro-Regular.ttf') format('truetype'); /* Путь к файлу шрифта Regular */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Anonymous Pro';
+    src: url('fonts/AnonymousPro-Bold.ttf') format('truetype'); /* Путь к файлу шрифта Bold */
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Anonymous Pro';
+    src: url('fonts/AnonymousPro-Italic.ttf') format('truetype'); /* Путь к файлу шрифта Italic */
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Anonymous Pro';
+    src: url('fonts/AnonymousPro-BoldItalic.ttf') format('truetype'); /* Путь к файлу шрифта Bold Italic */
+    font-weight: bold;
+    font-style: italic;
+}

@@ -1,0 +1,48 @@
+body {
+    font-family: 'Anonymous Pro', sans-serif;
+    background-color: #2f2f2f;
+    color: #d6d6d6;
+}
+input[type="number"], input[type="text"] {
+    background-color: #2f2f2f;
+    color: #f2f2f2;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Anonymous Pro', sans-serif;
+}
+input[type="submit"], button {
+    background-color: #373737;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Anonymous Pro', sans-serif;
+}
+a {
+    font-family: 'Anonymous Pro', sans-serif;
+    color: #d6d6d6;
+}
+h1, h2, h3 {
+    font-family: 'Anonymous Pro', sans-serif;
+}
+table {
+    border-collapse: collapse;
+    font-family: 'Anonymous Pro', sans-serif;
+    width: 80%;
+    align-self: center;
+    color: #d6d6d6;
+}
+th, td {
+    border: none;
+    padding: 30px;
+    background-color: #2f2f2f;
+    text-align: center;
+    color: #d6d6d6;
+    font-family: 'Anonymous Pro', sans-serif;
+}
+th {
+    text-decoration-color: white;
+    background-color: #2f2f2f;
+}

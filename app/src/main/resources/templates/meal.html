@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>О блюде</title>
+    <style>
+        body {
+            font-family: 'Anonymous Pro', sans-serif;
+            background-color: #2f2f2f;
+            color: #d6d6d6;
+        }
+        input[type="number"], input[type="text"] {
+            background-color: #2f2f2f;
+            color: #f2f2f2;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        input[type="submit"], button {
+            background-color: #373737;
+            color: #d6d6d6;
+            padding: 15px 25px;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        a.button {
+            display: inline-block;
+            background-color: #373737;
+            color: #d6d6d6;
+            font-size: 15px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Anonymous Pro', sans-serif;
+            text-decoration: none;
+        }
+        form {
+            margin-bottom: 20px; /* Отступ снизу для элемента <form> */
+        }
+        h1 {
+            margin-left: 40px;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        h2, h3 {
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            font-family: 'Anonymous Pro', sans-serif;
+            width: 80%;
+            align-self: center;
+            color: #d6d6d6;
+        }
+        th, td {
+            border: none;
+            padding: 30px;
+            background-color: #2f2f2f;
+            text-align: center;
+            color: #d6d6d6;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        th {
+            text-decoration-color: white;
+            background-color: #2f2f2f;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${meal.name}"></h1>
+<h2>Обновить информацию о блюде</h2>
+    <form th:action="@{'/menu/update/' + ${meal.id}}" method="post" onsubmit="return validateForm()">
+        Время готовки:
+        <input type="number" name="hours" min="0" max="23" th:value="${meal.prepTime.getHour()}" required/> ч.
+        <input type="number" name="minutes" min="0" max="59" th:value="${meal.prepTime.getMinute()}"required/> мин.
+        <input type="hidden" name="seconds" th:value="${0}" />
+        <br><br>
+        Количество блюд в наличии: <input type="number" name="amount" th:value="${meal.amount}" required/><br><br>
+        Цена: <input type="number" name="price" min="0" max="1000000" th:value="${meal.price}" required/><br><br>
+        <input type="submit" value="обновить блюдо"/>
+    </form>
+<a class="button" th:href="@{'/menu'}">в главное меню</a>
+</body>
+</html>

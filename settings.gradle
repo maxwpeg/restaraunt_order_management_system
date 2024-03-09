@@ -1,0 +1,4 @@
+rootProject.name = 'restaraunt_order_management_system'
+
+include("api")
+include("app")

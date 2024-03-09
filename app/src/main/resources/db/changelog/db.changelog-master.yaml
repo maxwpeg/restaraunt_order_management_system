@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: meal.sql
+      relativeToChangelogFile: true
+  - include:
+      file: user.sql
+      relativeToChangelogFile: true
+  - include:
+      file: user_role.sql
+      relativeToChangelogFile: true

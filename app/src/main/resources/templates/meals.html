@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: 'Anonymous Pro', sans-serif;
+            background-color: #2f2f2f;
+            color: #d6d6d6;
+        }
+        input[type="number"], input[type="text"] {
+            background-color: #2f2f2f;
+            color: #f2f2f2;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        input[type="submit"], button {
+            background-color: #373737;
+            color: #d6d6d6;
+            font-size: 15px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        a.button {
+            display: inline-block;
+            background-color: #373737;
+            color: #d6d6d6;
+            font-size: 15px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Anonymous Pro', sans-serif;
+            text-decoration: none;
+        }
+        h1 {
+            margin-left: 40px;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        h2, h3 {
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            font-family: 'Anonymous Pro', sans-serif;
+            width: 80%;
+            align-self: center;
+            color: #d6d6d6;
+        }
+        th, td {
+            border: none;
+            padding: 30px;
+            background-color: #2f2f2f;
+            text-align: center;
+            color: #d6d6d6;
+            font-family: 'Anonymous Pro', sans-serif;
+        }
+        th {
+            text-decoration-color: white;
+            background-color: #2f2f2f;
+        }
+    </style>
+</head>
+<body>
+<h1>Menu | <a href="/login">Войти</a></h1>
+<table>
+    <tr>
+        <th>Название блюда</th>
+        <th>Цена</th>
+        <th>Время готовки</th>
+        <th>Количество в наличии</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <th:block th:each="meal : ${meals}">
+        <tr>
+            <td th:text="${meal.name}"></td>
+            <td th:text="${meal.price + ' ₽'}"></td>
+            <td><span th:text="${meal.prepTime}" class="time-format"></span></td>
+            <td th:text="${meal.amount}"></td>
+            <td><a class="button" th:href="@{'/menu/show/' + ${meal.id}}">Подробнее...</a></td>
+            <td>
+                <form th:action="@{'/menu/delete/' + ${meal.id}}" method="post">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+
+<h3>Добавить новое блюдо в меню: </h3>
+    <form action="/menu/create" method="post" onsubmit="return validateForm()">
+    Название блюда: <input type="text" name="name" required/><br><br>
+    Время готовки:
+    <input type="number" name="hours" min="0" max="23" required/> ч.
+    <input type="number" name="minutes" min="0" max="59" required/> мин.
+    <input type="hidden" name="seconds" th:value="${0}" />
+    <br><br>
+    Количество блюд в наличии: <input type="number" name="amount" required/><br><br>
+    Цена: <input type="number" name="price" min="0" max="1000000" required/><br><br>
+    <input type="hidden" name="id" th:value="${T(java.util.UUID).randomUUID()}"/>
+    <input type="submit" value="Добавить блюдо"/>
+    </form>
+
+<script>
+    function validateForm() {
+        var name = document.getElementsByName("name")[0].value;
+        var hours = document.getElementsByName("hours")[0].value;
+        var minutes = document.getElementsByName("minutes")[0].value;
+        var seconds = document.getElementsByName("seconds")[0].value;
+        var amount = document.getElementsByName("amount")[0].value;
+        var price = document.getElementsByName("price")[0].value;
+
+        if (name === "" || hours === "" || minutes === "" || seconds === "" || amount === "" || price === "") {
+            alert("Пожалуйста, заполните все поля.");
+            return false; // Отменяем отправку формы
+        }
+
+        return true; // Разрешаем отправку формы
+    }
+</script>
+
+<script>
+    var timeElements = document.getElementsByClassName("time-format");
+
+    for (var i = 0; i < timeElements.length; i++) {
+        var timeText = timeElements[i].textContent;
+        var timeParts = timeText.split(":");
+        var hours = parseInt(timeParts[0]);
+        var minutes = parseInt(timeParts[1]);
+        var formattedTime = "";
+
+        if (hours > 0) {
+            formattedTime += hours + " ч. ";
+        }
+
+        if (minutes > 0) {
+            formattedTime += minutes + " мин.";
+        }
+
+        timeElements[i].textContent = formattedTime;
+    }
+</script>
+
+</body>
+</html>
