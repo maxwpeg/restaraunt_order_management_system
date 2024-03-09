@@ -1,10 +1,17 @@
-#databaseChangeLog:
-#  - include:
-#      file: meal.sql
-#      relativeToChangelogFile: true
-#  - include:
-#      file: user.sql
-#      relativeToChangelogFile: true
-#  - include:
-#      file: order.sql
-#      relativeToChangelogFile: true
+---
+databaseChangeLog:
+  - include:
+      file: user.sql
+      relativeToChangelogFile: true
+  - include:
+      file: user_role.sql
+      relativeToChangelogFile: true
+  - include:
+      file: meal.sql
+      relativeToChangelogFile: true
+  - include:
+      file: order.sql
+      relativeToChangelogFile: true
+  - include:
+      file: order_meal.sql
+      relativeToChangelogFile: true
