@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+    @AllArgsConstructor
 public class MealService {
 
     private final MealDbModelToMealDtoMapper mealDbModelToMealDtoMapper;

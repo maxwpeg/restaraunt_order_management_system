@@ -27,7 +27,7 @@ public class UserService {
 
     public boolean createUser(User user) {
         String login = user.getLogin();
-        if (userRepository.findByLogin(login) != null) return false;
+//        if (userRepository.findByLogin(login) != null) return false;
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_CLIENT);
